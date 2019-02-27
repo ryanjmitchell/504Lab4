@@ -9,8 +9,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  id: 'mapbox.streets', // experiment with changing this to mapbox.light, mapbox.dark, mapbox.satellite, etc.
-  accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //this is a generic access token, but when you deploy projects of your own, you must get a unique key that is tied to your Mapbox account
+  id: 'mapbox.light', // experiment with changing this to mapbox.light, mapbox.dark, mapbox.satellite, etc.
+  accessToken: 'pk.eyJ1IjoicnlhbmptaXRjaCIsImEiOiJjamhhdDBjaXgwcmZlMzBxZ2t1cnZ4bnFnIn0.4tXv0Yvk06rDbYp7ZLSdAw' //this is a generic access token, but when you deploy projects of your own, you must get a unique key that is tied to your Mapbox account
 }).addTo(map);
 
 //the below JS code takes advantage of the Geolocate API as it is incorporated in the Leaflet JS API with the locate method
