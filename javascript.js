@@ -46,6 +46,6 @@ map.on('locationerror', onLocationError);
 map.locate({
   setView: true, //this option centers the map on location and zooms
   maxZoom: 16, // this option prevents the map from zooming further than 16, maintaining some spatial context even if the accuracy of the location reading allows for closer zoom
-  timeout: 20000, // this option specifies when the browser will stop attempting to get a fix on the device's location. Units are miliseconds. Change this to 5000 and test the change. Before you submit, change this to 15000.
+  timeout: 15000, // Changed this to 15000.
   watch: false, // you can set this option from false to true to track a user's movement over time instead of just once. For our purposes, however, leave this option as is.
 });
