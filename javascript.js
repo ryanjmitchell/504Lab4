@@ -2,15 +2,15 @@ window.onload = function(){
 alert('If you give it permission, this web page will access to your location in order to demonstrate how device sensors can interact with web maps.');
 } // On load, this alert notifies the user that the page will ask to access their location and gives a reason why. You can easily modify this text.
 
-var map = L.map('map').fitWorld(); //Here we initialize the map in the "map" div defined in the html body. Below, we call in Mapbox tiles and use the options to set the max zoom to 18, include our attribution, specify that the tiles set we want is mapbox.streets, and provide the access token for Mapbox's API
+var map = L.map('map').fitWorld(); // Initialize the map
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
   maxZoom: 18,
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  id: 'mapbox.light', // experiment with changing this to mapbox.light, mapbox.dark, mapbox.satellite, etc.
-  accessToken: 'pk.eyJ1IjoicnlhbmptaXRjaCIsImEiOiJjamhhdDBjaXgwcmZlMzBxZ2t1cnZ4bnFnIn0.4tXv0Yvk06rDbYp7ZLSdAw' //this is a generic access token, but when you deploy projects of your own, you must get a unique key that is tied to your Mapbox account
+  id: 'mapbox.light', // changed to mapbox.light
+  accessToken: 'pk.eyJ1IjoicnlhbmptaXRjaCIsImEiOiJjamhhdDBjaXgwcmZlMzBxZ2t1cnZ4bnFnIn0.4tXv0Yvk06rDbYp7ZLSdAw' // This is my token
 }).addTo(map);
 
 //the below JS code takes advantage of the Geolocate API as it is incorporated in the Leaflet JS API with the locate method
@@ -19,17 +19,17 @@ function onLocationFound(e) { //this function does three things if the location 
   var radius = e.accuracy / 2; //this defines a variable radius as the accuracy value returned by the locate method divided by 2. It is divided by 2 because the accuracy value is the sum of the estimated accuracy of the latitude plus the estimated accuracy of the longitude. The unit is meters.
 
   L.marker(e.latlng).addTo(map)
-    .bindPopup("You are within " + radius + " of this point.").openPopup();
+    .bindPopup("You are within " + radius + "m of this point.").openPopup();
   //this adds a Leaflet popup to the map at the lat and long returned by the locate function. The text of the popup is defined here as well. Please change this text to specify what unit the radius is reported in.
 
   L.circle(e.latlng, radius).addTo(map); // this adds a Leaflet circle to the map at the lat and long returned by the locate function. Its radius is set to the var radius defined above.
 
-  /*if (radius < 30) {
+  *if (radius < 30) {
       L.circle(e.latlng, radius, {color: 'green'}.addTo(map);
   }
   else{
       L.circle(e.latlng, radius, {color: 'red'}).addTo(map),
-  } */
+  } *
   //this adds a Leaflet circle to the map at the lat and long returned by the locate function. Its radius is set to the var radius defined above. If the radius is less than 30, the color of the circle is blue. If it is more than 30, the color is red. Comment out the line of code that adds the simple circle and uncomment the seven lines of code that enable the responsively colored circle. NOTE: there are two syntax errors in the code that you must correct in order for it to function.
 }
 
