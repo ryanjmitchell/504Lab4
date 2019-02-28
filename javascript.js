@@ -11,12 +11,16 @@ var light   = L.tileLayer(mbUrl, {id: 'mapbox.light', maxZoom:18, attribution: m
 	dark  = L.tileLayer(mbUrl, {id: 'mapbox.dark', maxZoom:18, attribution: mbAttr});
 
 var map = L.map('map', {
-	layers:[light]}).fitWorld(); 
+	layers:[light]}).fitWorld();
+
 var baseLayers = {
 		"light": light,
 		"dark": dark
 	};
 L.control.layers(baseLayers).addTo(map);
+L.easyButton('fas fa-crosshairs', function(btn, map){
+  map.locate({setView: true, maxZoom: 18});
+}).addTo(map);
 
 var currentTime = new Date().getHours()
 
@@ -29,7 +33,6 @@ else{
 	map.addLayer(dark);
 }
 
-
 function onLocationFound(e) {
 
   var radius = e.accuracy / 2;
@@ -39,7 +42,7 @@ function onLocationFound(e) {
   L.marker(e.latlng).addTo(map)
     .bindPopup("You are within " + radius + "m of this point.<br>" + latlong).openPopup();
 
-  L.circle(e.latlng, radius).addTo(map); // this adds a Leaflet circle to the map at the lat and long returned by the locate function. Its radius is set to the var radius defined above.
+  L.circle(e.latlng, radius).addTo(map);
 
   if (radius < 30) {
       L.circle(e.latlng, radius, {color: 'green'}).addTo(map);
@@ -52,9 +55,7 @@ function onLocationFound(e) {
 function onLocationError(e) {
   alert(e.message);
 }
-//this function runs if the location is not found when the locate method is called. It produces an alert window that reports the error
 
-//these are event listeners that call the functions above depending on whether or not the locate method is successful
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
