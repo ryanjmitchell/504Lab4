@@ -18,6 +18,7 @@ var baseLayers = {
 	"dark": dark
 };
 L.control.layers(baseLayers).addTo(map);
+
 L.easyButton('fas fa-crosshairs', function(btn, map){
 	map.locate({setView: true, maxZoom: 18});
 }).addTo(map);
