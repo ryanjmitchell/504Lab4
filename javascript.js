@@ -37,11 +37,11 @@ else{
 function onLocationFound(e) {
 
 	var radius = e.accuracy / 2;
-	
+
 	var latlong = e.latlng
 
 	L.marker(e.latlng).addTo(map)
-	.bindPopup("You are within " + radius + "m of this point.<br>" + latlong).openPopup();
+	.bindPopup("You are within " + radius + "m of this point.<br>Latitude: " + e.latitude + "<br>Longitude: " + e.longitude).openPopup();
 
 	L.circle(e.latlng, radius).addTo(map);
 
